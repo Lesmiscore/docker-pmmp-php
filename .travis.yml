@@ -1,0 +1,22 @@
+sudo: required
+
+notifications:
+  email: false
+
+services:
+  - docker
+
+before_script:
+  - sh -c "$DOCKER_LOGIN_COMMAND" > /dev/null
+
+script:
+  - docker build -t nao20010128nao/docker-pmmp-php:alpine alpine-php7
+  - docker build -t nao20010128nao/docker-pmmp-php:debian debian-php7
+  - docker build -t nao20010128nao/docker-pmmp-php:ubuntu ubuntu-php7
+  
+  - docker tag nao20010128nao/docker-pmmp-php:ubuntu nao20010128nao/docker-pmmp-php:latest
+
+  - docker push nao20010128nao/docker-pmmp-php:alpine
+  - docker push nao20010128nao/docker-pmmp-php:debian
+  - docker push nao20010128nao/docker-pmmp-php:ubuntu
+  - docker push nao20010128nao/docker-pmmp-php:latest
