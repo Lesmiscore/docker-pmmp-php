@@ -7,9 +7,11 @@ services:
   - docker
 
 before_script:
+  - apt-get update
+  - apt-get upgrade -y
   - sh -c "$DOCKER_LOGIN_COMMAND" > /dev/null
 
-script:
+script:  
   - docker build -t nao20010128nao/docker-pmmp-php:alpine alpine-php7
   - docker build -t nao20010128nao/docker-pmmp-php:debian debian-php7
   - docker build -t nao20010128nao/docker-pmmp-php:ubuntu ubuntu-php7
