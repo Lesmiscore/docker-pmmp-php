@@ -11,7 +11,7 @@ RUN apk add --no-cache make autoconf automake m4 wget gzip bzip2 bison g++ libto
 FROM alpine
 
 # copy php binaries from the past section
-RUN mkdir -p /opt/php && apk add --no-cache libc6-compat
+RUN mkdir -p /opt/php && apk add --no-cache libc6-compat libstdc++ libgcc
 COPY --from=phpbuild /build/bin /opt/php
 
 # set PATH
